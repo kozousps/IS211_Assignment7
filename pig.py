@@ -6,7 +6,7 @@ class die:
     def roll(self):
         """roll returns number between 1-6"""
         import random
-        # random.seed(0)
+        random.seed(0)
         return(random.randint(1, self.sides))
 
 
