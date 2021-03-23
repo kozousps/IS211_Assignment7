@@ -22,37 +22,39 @@ class player:
         keep_rolling = 1
         while keep_rolling == 1:
             r = die.roll()
-            print("You got a ", r)
+            print("Player {} got a ".format(self.n), r)
             if r == 1:
-                player.turnscore = 0
+                self.turnscore = 0
                 keep_rolling = 0
                 print("The round is over")
-                return player.points
+                print()
             else:
-                player.turnscore += r
-                print("Your turnscore is ", player.turnscore)
+                self.turnscore += r
+                print("Player {}'s turnscore is".format(self.n),
+                      self.turnscore)
                 roll = input("Keep rolling? r = roll, h = hold")
                 if roll == 'r':
                     keep_rolling = 1
                 else:
-                    return player.points
-                    player.h()
+                    self.h()
+                    return
 
     def h(self):
-        player.points += player.turnscore
-        if player.points >= 100:
-            player.end()
+        self.points += self.turnscore
+        if self.points >= 100:
+            self.end()
         else:
-            print("The round is over")
-            return player.points
+            print("Player {}'s turn is over".format(self.n))
+            print()
+            return self.points
 
     def end(self):
         """ends game when board = 100"""
-        print("{} Won!".format(self.player))
+        print("Player {} Won!".format(self.n))
         quit()
 
     def score(self):
-        print("Player {} score is {}".format(self.n, self.points))
+        print("Player {}'s score is {}".format(self.n, self.points))
 
 
 if __name__ == "__main__":
@@ -61,11 +63,10 @@ if __name__ == "__main__":
     player2 = player(2)
 
     print("Welcome to Pig.")
-    print(player1.points())
-    while player1.points() < 100 and player2.points() < 100:
+    while player1.points < 100 and player2.points < 100:
         player1.score()
         player2.score()
-        player1.r
+        player1.r()
         player1.score()
         player2.score()
-        player2.r
+        player2.r()
